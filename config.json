@@ -1,0 +1,10 @@
+{
+  "token": "INPUT DISCORD TOKEN HERE",
+  "timezone_offset": 0, # Set this to your offset in your timezone. e.g. 11 (+11)
+  "guild_ids": [ENTER GUILD ID HERE],
+  "allowed_user_ids": [ENTER ADMIN ID HERE],
+    "status": {
+        "type": "playing",
+        "message": "with docker-compose.yaml files"
+    }
+}
