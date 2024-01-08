@@ -22,7 +22,7 @@ I currently do not have any plans. Check back in the future!
 To run this, first clone this repository:
 
 ```
-git clone https://github.com/xdFNLeaks/managebot.git
+sudo git clone https://github.com/xdFNLeaks/managebot.git
 ```
 
 **After you have cloned this repo, open `config.json` and edit it to your liking.**
@@ -36,7 +36,7 @@ git clone https://github.com/xdFNLeaks/managebot.git
 Once you have configured `config.json`, run the following command:
 
 ```
-docker run -d \
+sudo docker run -d \
 --name=managebot \
 --restart=unless-stopped \
 --privileged \
@@ -58,15 +58,15 @@ The most simple way to start, stop or restart managebot is directly from the com
 
 Start
 ```
-docker start managebot
+sudo docker start managebot
 ```
 Stop
 ```
-docker stop managebot
+sudo docker stop managebot
 ```
 Restart
 ```
-docker restart management
+sudo docker restart management
 ```
 
 # Issues
