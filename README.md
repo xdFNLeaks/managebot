@@ -66,7 +66,7 @@ sudo docker stop managebot
 ```
 Restart
 ```
-sudo docker restart management
+sudo docker restart managebot
 ```
 
 # Issues
