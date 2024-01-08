@@ -17,7 +17,7 @@ I currently do not have any plans. Check back in the future!
 
 ## Installation
 
-**You must have docker installed and running.**
+**You must have Docker & Python installed and running.**
 
 To run this, first clone this repository:
 
