@@ -44,7 +44,7 @@ sudo docker run -d \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -w /your/path/to/managebot \
 python:3.11 \
-/bin/bash -c "apt-get install -y docker.io && python3 -m pip install -U py-cord --pre && python3 bot.py"
+/bin/bash -c "apt-get update -y && apt-get install -y docker.io && python3 -m pip install -U py-cord --pre && python3 bot.py"
 ```
 Edit /your/path/to/managebot to wherever you put managebot.
 
