@@ -68,3 +68,7 @@ Restart
 ```
 docker restart management
 ```
+
+# Issues
+
+**Please report any issues you have with the bot in the Issues tab!**
