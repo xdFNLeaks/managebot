@@ -15,7 +15,7 @@ I currently do not have any plans. Check back in the future!
 
 ---
 
-## Installation (docker compose coming soon)
+## Installation
 
 **You must have docker installed and running.**
 
