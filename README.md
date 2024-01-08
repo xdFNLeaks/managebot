@@ -11,7 +11,7 @@ just a little project i'm working on that allows you to view and manage your doc
 
 ### Planned Features
 
-I currently do not have any plans. Check back in the future!
+- Docker Image Management
 
 ---
 
