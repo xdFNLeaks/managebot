@@ -12,7 +12,7 @@ just a little project i'm working on that allows you to view and manage your doc
 ### Planned Features
 
 - Docker Image Management
-- Pausing and Unpausing containers instead of turning them off
+- Pausing and Unpausing containers
 
 ---
 
