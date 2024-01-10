@@ -6,12 +6,20 @@ just a little project i'm working on that allows you to view and manage your doc
 
 ---
 
-### Features
+### What's New? *(v1.1)*
 
-- Executing Docker Commands (`/docker execute`) (start, stop, restart, pause/unpause.)
-- Listing all docker containers and sorts them into Online & Offline. (`/list`)
+*What is listed here will be added to the features section in the next update!*
+
 - Docker Image Management + Image Pruning (`/docker images` | `/docker prune`)
 **NOTE:** The "all" option when using `/docker prune` is referring to using -all/-a in the command. using it will remove all unused images, not just dangling ones.
+- added Pause/Unpause to /docker execute
+
+---
+
+### Features
+
+- Executing Docker Commands (`/docker execute`) (start, stop, restart)
+- Listing all docker containers and sorts them into Online & Offline. (`/list`)
 
 ### Planned Features
 
