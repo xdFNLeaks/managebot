@@ -11,6 +11,7 @@ just a little project i'm working on that allows you to view and manage your doc
 - Executing Docker Commands (`/docker execute`) (start, stop, restart, pause/unpause.)
 - Listing all docker containers and sorts them into Online & Offline. (`/list`)
 - Docker Image Management + Image Pruning (`/docker images` | `/docker prune`)
+**NOTE:** The "all" option when using `/docker prune` is referring to using -all/-a in the command. using it will remove all unused images, not just dangling ones.
 
 ### Planned Features
 
