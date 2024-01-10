@@ -8,13 +8,13 @@ just a little project i'm working on that allows you to view and manage your doc
 
 ### Features
 
-- Executing Docker Commands (/docker execute) (start, stop, restart, pause/unpause.)
-- Listing all docker containers and sorts them into Online & Offline. (/list)
-- Docker Image Management + Image Pruning (/docker images | /docker prune)
+- Executing Docker Commands (`/docker execute`) (start, stop, restart, pause/unpause.)
+- Listing all docker containers and sorts them into Online & Offline. (`/list`)
+- Docker Image Management + Image Pruning (`/docker images` | `/docker prune`)
 
 ### Planned Features
 
-Check back later!
+Please Check back later!
 
 ---
 
