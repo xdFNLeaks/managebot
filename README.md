@@ -1,18 +1,20 @@
 # managebot
 
+**Version 1.1 has been released!**
+
 just a little project i'm working on that allows you to view and manage your docker containers from discord.
 
 ---
 
 ### Features
 
-- Executing Docker Commands (/docker execute) (currently only Start, Stop & Restarting docker containers.)
+- Executing Docker Commands (/docker execute) (start, stop, restart, pause/unpause.)
 - Listing all docker containers and sorts them into Online & Offline. (/list)
+- Docker Image Management + Image Pruning (/docker images | /docker prune)
 
 ### Planned Features
 
-- Docker Image Management
-- Pausing and Unpausing containers
+Check back later!
 
 ---
 
