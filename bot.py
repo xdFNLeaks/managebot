@@ -45,12 +45,14 @@ async def on_ready():
 docker_management = bot.create_group("docker", "Manage Docker containers")
 
 @docker_management.command(description="Execute Docker container management commands.")
-async def execute(ctx, action: discord.Option(str, choices=['start', 'stop', 'restart']), container_name: discord.Option(str, autocomplete=discord.utils.basic_autocomplete(get_container_names))):
+async def execute(ctx, action: discord.Option(str, choices=['start', 'stop', 'restart', 'pause', 'unpause']), container_name: discord.Option(str, autocomplete=discord.utils.basic_autocomplete(get_container_names))):
     if ctx.author.id not in config["allowed_user_ids"]:
         await ctx.respond("You are not authorized to use this bot.")
         return
 
     try:
+        await ctx.defer()
+
         response = ""
         if action.lower() == "start":
             subprocess.check_output(['docker', 'start', container_name])
@@ -61,11 +63,92 @@ async def execute(ctx, action: discord.Option(str, choices=['start', 'stop', 're
         elif action.lower() == "restart":
             subprocess.check_output(['docker', 'restart', container_name])
             response = f"Container `{container_name}` has been restarted."
+        elif action.lower() == "pause":
+            subprocess.check_output(['docker', 'pause', container_name])
+            response = f"Container `{container_name}` has been paused."
+        elif action.lower() == "unpause":
+            subprocess.check_output(['docker', 'unpause', container_name])
+            response = f"Container `{container_name}` has been unpaused."
         else:
-            await ctx.respond("Invalid action. Use 'start', 'stop', or 'restart'.")
+            await ctx.respond("Invalid action. Use start, stop, restart, pause or unpause.")
 
         embed = discord.Embed(
             title="**__Docker Management__**",
+            description=response,
+            color=discord.Colour.blurple(),
+        )
+        embed.set_footer(text=get_current_time())
+        await ctx.respond(embed=embed)
+
+    except subprocess.CalledProcessError as e:
+        await ctx.respond(f"Error executing Docker command: {e}")
+
+@docker_management.command(description="Manage Docker images.")
+async def images(ctx, action: discord.Option(str, choices=['list', 'pull', 'remove']), image_name: discord.Option(str) = None):
+    if ctx.author.id not in config["allowed_user_ids"]:
+        await ctx.respond("You are not authorized to use this bot.")
+        return
+
+    try:
+        await ctx.defer()
+
+        response = ""
+        if action.lower() == "list":
+            result = subprocess.check_output(['docker', 'images', '--format', '{{.Repository}}:{{.Tag}}\t{{.Size}}'], text=True)
+            images_info = result.split('\n')
+            images_info = [line.split('\t') for line in images_info if line]
+
+            image_list = [f"**{image_name}** - Size: {image_size}" for image_name, image_size in images_info]
+            response = "\n".join(image_list)
+
+        elif action.lower() == "pull":
+            if image_name:
+                subprocess.check_output(['docker', 'pull', image_name])
+                response = f"Image `{image_name}` has been pulled successfully."
+            else:
+                await ctx.respond("Please provide an image name to pull.")
+
+        elif action.lower() == "remove":
+            if image_name:
+                subprocess.check_output(['docker', 'rmi', image_name])
+                response = f"Image `{image_name}` has been removed successfully."
+            else:
+                await ctx.respond("Please provide an image name to remove.")
+
+        else:
+            await ctx.respond("Invalid action. Use 'list', 'pull' or 'remove'.")
+
+        embed = discord.Embed(
+            title="**__Docker Image Management__**",
+            description=response,
+            color=discord.Colour.blurple(),
+        )
+        embed.set_footer(text=get_current_time())
+        await ctx.respond(embed=embed)
+
+    except subprocess.CalledProcessError as e:
+        await ctx.respond(f"Error executing Docker command: {e}")
+
+@docker_management.command(description="Prune Docker images.")
+async def prune(ctx, all: discord.Option(bool, description="Prune all Docker images (including unused ones)", required=True)):
+    if ctx.author.id not in config["allowed_user_ids"]:
+        await ctx.respond("You are not authorized to use this bot.")
+        return
+
+    try:
+        await ctx.defer()
+
+        prune_command = ['docker', 'image', 'prune', '-f']
+        
+        if all:
+            prune_command.append('-a')
+
+        subprocess.check_output(prune_command)
+
+        response = "Unused Docker images have been pruned successfully."
+
+        embed = discord.Embed(
+            title="**__Docker Image Pruning__**",
             description=response,
             color=discord.Colour.blurple(),
         )
@@ -82,6 +165,8 @@ async def list(ctx):
         return
 
     try:
+        await ctx.defer()
+
         result = subprocess.check_output(['docker', 'ps', '--all', '--format', '{{.Names}}\t{{.Status}}'], text=True)
 
         containers_info = result.split('\n')
@@ -106,5 +191,9 @@ async def list(ctx):
 
     except subprocess.CalledProcessError as e:
         await ctx.respond(f"Error retrieving Docker instances: {e}")
+
+@bot.slash_command(guild_ids=config["guild_ids"], description="Ping the bot.")
+async def ping(ctx):
+    await ctx.respond(f"`🏓 Pong!`")
 
 bot.run(config["token"])
