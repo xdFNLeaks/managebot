@@ -24,6 +24,7 @@ just a little project i'm working on that allows you to view and manage your doc
 ### Planned Features
 
 - Web UI (possible)
+- Notifications to a channel (___ has gone offline/online!)
 
 ---
 
