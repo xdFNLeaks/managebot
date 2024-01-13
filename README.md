@@ -1,12 +1,12 @@
 # managebot
 
-**Version 1.1 has been released!**
+**Version 1.0.1 has been released!**
 
 just a little project i'm working on that allows you to view and manage your docker containers from discord.
 
 ---
 
-### What's New? *(v1.1)*
+### What's New? *(v1.0.1)*
 
 *What is listed here will be added to the features section in the next update!*
 
