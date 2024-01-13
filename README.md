@@ -25,6 +25,7 @@ just a little project i'm working on that allows you to view and manage your doc
 
 - Web UI (possibly, not 100% sure if I can make this right now)
 - Discord Webhook Integration/Notifications (___ has gone offline/online!)
+- Auto Update on Restart/Run
 
 ---
 
