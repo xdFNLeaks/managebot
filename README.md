@@ -51,7 +51,16 @@ Please create a `config` folder and inside a `config.json` file.
 - `type` = The Rich Presence type (Playing ..., Watching ...) - Currently available: Playing, Watching, Listening.
 - `message` = The message that shows up after `type` (Playing {message}, Watching {message})
 
-Now is time to run the bot! Please see below.
+### Inviting your bot
+
+Once you have created your bot, got your token and filled out `config.json`, you will now have to invite your bot.
+
+1. Click OAuth2 --> URL Generator
+2. For scopes, select `bot` & `applications.commands`.
+3. For Bot Permissions, I recommend selecting `administrator`.
+4. Scroll down, copy the invite and invite your bot to your server.
+
+Now is time to run the bot.
 
 ### docker-compose.yaml (hopefully works lol)
 
