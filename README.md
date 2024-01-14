@@ -64,7 +64,7 @@ Now is time to run the bot.
 
 ### docker-compose.yaml (hopefully works lol)
 
-```
+```yaml
 version: "3.3"
 services:
   managebot:
