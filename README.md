@@ -1,30 +1,27 @@
 # managebot
 
-**Version 1.0.1 has been released!**
+**Version 1.0.2 has been released!**
 
 just a little project i'm working on that allows you to view and manage your docker containers from discord.
 
 ---
 
-### What's New? *(v1.0.1)*
+### What's New? *(v1.0.2)*
 
-*What is listed here will be added to the features section in the next update!*
-
-- Docker Image Management + Image Pruning (`/docker images` | `/docker prune`)
-**NOTE:** The "all" option when using `/docker prune` is referring to using -all/-a in the command. using it will remove all unused images, not just dangling ones.
-- added Pause/Unpause to `/docker execute`
+- Added Auto Update when restarting/starting. [Check here to see how to enable it!](https://github.com/xdFNLeaks/managebot?tab=readme-ov-file#installation)
+- Added delete to `/docker execute`
 
 ---
 
 ### Features
 
-- Executing Docker Commands (`/docker execute`) (start, stop, restart)
+- Executing Docker Commands (`/docker execute`) (start, stop, restart, pause, unpause)
 - Listing all docker containers and sorts them into Online & Offline. (`/list`)
+- Docker Image Management + Image Pruning (`/docker images` | `/docker prune`)
 
 ### Planned Features
 
 - Web Interface (possibly, not 100% sure if I can make this right now)
-- Auto Update on Restart/Run
 
 ---
 
@@ -46,7 +43,23 @@ sudo git clone https://github.com/xdFNLeaks/managebot.git
 - `type` = The Rich Presence type (Playing ..., Watching ...) - Currently available: Playing, Watching, Listening.
 - `message` = The message that shows up after `type` (Playing {message}, Watching {message})
 
-Once you have configured `config.json`, run the following command:
+Now is time to run the bot! Please see below.
+
+### This script is to run managebot that updates itself at each restart/run. (RECOMMENDED)
+
+```
+sudo docker run -d \
+--name=managebot \
+--restart=unless-stopped \
+--privileged \
+-v /your/path/to/managebot:/your/path/to/managebot \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-w /your/path/to/managebot \
+python:3.11 \
+/bin/bash -c "apt-get update -y && apt-get install git && apt-get install -y docker.io && python3 -m pip install -U py-cord --pre && git checkout -- bot.py && python3 bot.py"
+```
+
+### This script is to run managebot that DOES NOT update itself at each restart/run. (NOT RECOMMENDED)
 
 ```
 sudo docker run -d \
@@ -59,6 +72,9 @@ sudo docker run -d \
 python:3.11 \
 /bin/bash -c "apt-get update -y && apt-get install -y docker.io && python3 -m pip install -U py-cord --pre && python3 bot.py"
 ```
+
+### After choosing your run script, follow these instructions below.
+
 Edit /your/path/to/managebot to wherever you put managebot.
 
 **The first run of managebot usually takes around 2 minutes (depending on your internet speeds). This is just for the first run.**
