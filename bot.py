@@ -7,7 +7,7 @@ import json
 
 bot = discord.Bot()
 
-with open("config.json", "r") as config_file:
+with open("config/config.json", "r") as config_file:
     config = json.load(config_file)
 
 def get_current_time():

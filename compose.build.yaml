@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  managebot:
+    container_name: managebot
+    privileged: true
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./config:/usr/src/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
