@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  managebot:
+    image: "ghcr.io/xdFNLeaks/managebot:latest"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./config:/usr/src/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
