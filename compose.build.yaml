@@ -4,7 +4,9 @@ services:
     container_name: managebot
     privileged: true
     restart: unless-stopped
-    image: "ghcr.io/xdFNLeaks/managebot:latest"
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - ./config:/usr/src/app/config
       - /var/run/docker.sock:/var/run/docker.sock
