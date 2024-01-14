@@ -1,21 +1,20 @@
 # managebot
 
-**Version 1.0.2 has been released!**
+**Version 1.0.3 has been released!**
 
 just a little project i'm working on that allows you to view and manage your docker containers from discord.
 
 ---
 
-### What's New? *(v1.0.2)*
+### What's New? *(v1.0.3)*
 
-- Added Auto Update when restarting/starting. [Check here to see how to enable it!](https://github.com/xdFNLeaks/managebot/tree/v1.0.2?tab=readme-ov-file#this-script-is-to-run-managebot-that-updates-itself-at-each-restartrun-recommended)
-- Added delete to `/docker execute`
+- Docker compose (hopefully works..)
 
 ---
 
 ### Features
 
-- Executing Docker Commands (`/docker execute`) (start, stop, restart, pause, unpause)
+- Executing Docker Commands (`/docker execute`) (start, stop, restart, pause, unpause, delete)
 - Listing all docker containers and sorts them into Online & Offline. (`/list`)
 - Docker Image Management + Image Pruning (`/docker images` | `/docker prune`)
 
@@ -27,15 +26,9 @@ just a little project i'm working on that allows you to view and manage your doc
 
 ## Installation
 
-**You must have Docker & Python installed and running.**
+Please create a `config` folder and inside a `config.json` file.
 
-To run this, first clone this repository:
-
-```
-sudo git clone https://github.com/xdFNLeaks/managebot.git
-```
-
-**After you have cloned this repo, open `config.json` and edit it to your liking.**
+**Open `config.json` and edit it to your liking.**
 - `token` = Your discord bot token. ([Discord Developer Portal](https://discord.com/developers/applications))
 - `timezone_offset` = Your timezone offset. ([List of UTC offsets - Wikipedia](https://en.wikipedia.org/wiki/List_of_UTC_offsets))
 - `guild_ids` = Your server ID. ([Tutorial](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID))
@@ -45,39 +38,22 @@ sudo git clone https://github.com/xdFNLeaks/managebot.git
 
 Now is time to run the bot! Please see below.
 
-### This script is to run managebot that updates itself at each restart/run. (RECOMMENDED)
+### docker-compose.yaml
 
 ```
-sudo docker run -d \
---name=managebot \
---restart=unless-stopped \
---privileged \
--v /your/path/to/managebot:/your/path/to/managebot \
--v /var/run/docker.sock:/var/run/docker.sock \
--w /your/path/to/managebot \
-python:3.11 \
-/bin/bash -c "apt-get update -y && apt-get install git && apt-get install -y docker.io && python3 -m pip install -U py-cord --pre && git checkout -- bot.py && python3 bot.py"
+version: "3.3"
+services:
+  managebot:
+    container_name: managebot
+    privileged: true
+    restart: unless-stopped
+    image: "ghcr.io/xdfnleaks/managebot:latest"
+    volumes:
+      - /your/path/to/managebot/config:/usr/src/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
 ```
-
-### This script is to run managebot that DOES NOT update itself at each restart/run. (NOT RECOMMENDED)
-
-```
-sudo docker run -d \
---name=managebot \
---restart=unless-stopped \
---privileged \
--v /your/path/to/managebot:/your/path/to/managebot \
--v /var/run/docker.sock:/var/run/docker.sock \
--w /your/path/to/managebot \
-python:3.11 \
-/bin/bash -c "apt-get update -y && apt-get install -y docker.io && python3 -m pip install -U py-cord --pre && python3 bot.py"
-```
-
-### After choosing your run script, follow these instructions below.
 
 Edit `/your/path/to/managebot` to wherever you put managebot.
-
-**The first run of managebot usually takes around 2 minutes (depending on your internet speeds). This is just for the first run.**
 
 Once your discord bot comes online. You are free to begin using commands.
 
