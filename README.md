@@ -8,7 +8,7 @@ just a little project i'm working on that allows you to view and manage your doc
 
 ### What's New? *(v1.0.2)*
 
-- Added Auto Update when restarting/starting. [Check here to see how to enable it!](https://github.com/xdFNLeaks/managebot?tab=readme-ov-file#installation)
+- Added Auto Update when restarting/starting. [Check here to see how to enable it!](https://github.com/xdFNLeaks/managebot/tree/v1.0.2?tab=readme-ov-file#this-script-is-to-run-managebot-that-updates-itself-at-each-restartrun-recommended)
 - Added delete to `/docker execute`
 
 ---
