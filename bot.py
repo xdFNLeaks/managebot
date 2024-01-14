@@ -45,7 +45,7 @@ async def on_ready():
 docker_management = bot.create_group("docker", "Manage Docker containers")
 
 @docker_management.command(description="Execute Docker container management commands.")
-async def execute(ctx, action: discord.Option(str, choices=['start', 'stop', 'restart', 'pause', 'unpause']), container_name: discord.Option(str, autocomplete=discord.utils.basic_autocomplete(get_container_names))):
+async def execute(ctx, action: discord.Option(str, choices=['start', 'stop', 'restart', 'pause', 'unpause', 'delete']), container_name: discord.Option(str, autocomplete=discord.utils.basic_autocomplete(get_container_names))):
     if ctx.author.id not in config["allowed_user_ids"]:
         await ctx.respond("You are not authorized to use this bot.")
         return
@@ -69,8 +69,15 @@ async def execute(ctx, action: discord.Option(str, choices=['start', 'stop', 're
         elif action.lower() == "unpause":
             subprocess.check_output(['docker', 'unpause', container_name])
             response = f"Container `{container_name}` has been unpaused."
+        elif action.lower() == "delete":
+            container_status = subprocess.check_output(['docker', 'inspect', '-f', '{{.State.Status}}', container_name], text=True).strip()
+            if container_status == 'running':
+                await ctx.respond(f"Container `{container_name}` is still running. Please stop it before attempting to delete.")
+                return
+            subprocess.check_output(['docker', 'rm', container_name])
+            response = f"Container `{container_name}` has been deleted."
         else:
-            await ctx.respond("Invalid action. Use start, stop, restart, pause or unpause.")
+            await ctx.respond("Invalid action. Use start, stop, restart, pause, unpause, or delete.")
 
         embed = discord.Embed(
             title="**__Docker Management__**",
