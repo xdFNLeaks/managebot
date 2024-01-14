@@ -75,7 +75,7 @@ python:3.11 \
 
 ### After choosing your run script, follow these instructions below.
 
-Edit /your/path/to/managebot to wherever you put managebot.
+Edit `/your/path/to/managebot` to wherever you put managebot.
 
 **The first run of managebot usually takes around 2 minutes (depending on your internet speeds). This is just for the first run.**
 
