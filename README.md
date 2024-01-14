@@ -28,6 +28,21 @@ just a little project i'm working on that allows you to view and manage your doc
 
 Please create a `config` folder and inside a `config.json` file.
 
+### config.json Template
+
+```json
+{
+  "token": "INPUT DISCORD TOKEN HERE",
+  "timezone_offset": 0, # Set this to your offset in your timezone. e.g. 11 (+11)
+  "guild_ids": [ENTER GUILD ID HERE],
+  "allowed_user_ids": [ENTER ADMIN ID HERE],
+    "status": {
+        "type": "playing",
+        "message": "with docker-compose.yaml files"
+    }
+}
+```
+
 **Open `config.json` and edit it to your liking.**
 - `token` = Your discord bot token. ([Discord Developer Portal](https://discord.com/developers/applications))
 - `timezone_offset` = Your timezone offset. ([List of UTC offsets - Wikipedia](https://en.wikipedia.org/wiki/List_of_UTC_offsets))
