@@ -38,7 +38,7 @@ Please create a `config` folder and inside a `config.json` file.
 
 Now is time to run the bot! Please see below.
 
-### docker-compose.yaml
+### docker-compose.yaml (hopefully works lol)
 
 ```
 version: "3.3"
