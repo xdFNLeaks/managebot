@@ -4,6 +4,7 @@ import socket
 import platform
 from datetime import datetime, timedelta, timezone
 import json
+import subprocess
 
 bot = discord.Bot()
 
@@ -202,5 +203,28 @@ async def list(ctx):
 @bot.slash_command(guild_ids=config["guild_ids"], description="Ping the bot.")
 async def ping(ctx):
     await ctx.respond(f"`🏓 Pong!`")
+
+@bot.slash_command(guild_ids=config["guild_ids"], description="Get system uptime.")
+async def uptime(ctx):
+    try:
+        await ctx.defer()
+
+        if platform.system().lower() == 'linux':
+            result = subprocess.check_output(['uptime', '-p'], text=True)
+        elif platform.system().lower() == 'darwin':
+            result = subprocess.check_output(['uptime'], text=True)
+        else:
+            result = "System uptime command not supported on this platform."
+
+        embed = discord.Embed(
+            title="**__System Uptime__**",
+            description=f"**Uptime:** `{result.strip()}`",
+            color=discord.Colour.blurple(),
+        )
+        embed.set_footer(text=get_current_time())
+        await ctx.respond(embed=embed)
+
+    except subprocess.CalledProcessError as e:
+        await ctx.respond(f"Error retrieving system uptime: {e}")
 
 bot.run(config["token"])
