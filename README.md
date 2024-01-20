@@ -1,14 +1,16 @@
 # managebot
 
-**Version 1.0.3 has been released!**
+**Version 1.0.4 has been released!**
 
 just a little project i'm working on that allows you to view and manage your docker containers from discord.
 
 ---
 
-### What's New? *(v1.0.3)*
+### What's New? *(v1.0.4)*
 
-- Docker compose (hopefully works..)
+very small update today.
+
+- Uptime command
 
 ---
 
