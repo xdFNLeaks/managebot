@@ -64,7 +64,7 @@ Once you have created your bot, got your token and filled out `config.json`, you
 
 Now is time to run the bot.
 
-### docker-compose.yaml (hopefully works lol)
+### docker-compose.yaml
 
 ```yaml
 version: "3.3"
